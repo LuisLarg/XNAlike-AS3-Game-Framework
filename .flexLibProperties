@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="GameState"/>
+    <classEntry path="com.luislarghi.myfirtsengine.Engine_GameState"/>
+    <classEntry path="com.luislarghi.myfirtsengine.Engine_GUI"/>
+    <classEntry path="com.luislarghi.myfirtsengine.Engine_Game"/>
+    <classEntry path="com.luislarghi.myfirtsengine.Engine_States"/>
+    <classEntry path="com.luislarghi.myfirtsengine.Engine_SpriteSheet"/>
+    <classEntry path="com.luislarghi.myfirtsengine.Engine_SoundManager"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
