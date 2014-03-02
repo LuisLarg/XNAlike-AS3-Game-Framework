@@ -18,7 +18,8 @@ package com.luislarghi.myfirtsengine
 			mainStage = s;
 			mainGame = g;
 			
-			this.scaleX = this.scaleY = Engine_Game.newScale;
+			this.scaleX = Engine_Game.newScaleX;
+			this.scaleY = Engine_Game.newScaleY;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, Init);
 			this.addEventListener(Event.REMOVED_FROM_STAGE, Clear);

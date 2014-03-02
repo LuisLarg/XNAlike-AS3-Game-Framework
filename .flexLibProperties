@@ -8,6 +8,7 @@
     <classEntry path="com.luislarghi.myfirtsengine.Engine_States"/>
     <classEntry path="com.luislarghi.myfirtsengine.Engine_SpriteSheet"/>
     <classEntry path="com.luislarghi.myfirtsengine.Engine_SoundManager"/>
+    <classEntry path="com.luislarghi.myfirtsengine.Engine_GUIButton"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

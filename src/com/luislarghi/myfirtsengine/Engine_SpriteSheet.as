@@ -25,7 +25,7 @@ package com.luislarghi.myfirtsengine
 		
 		public function Engine_SpriteSheet(tileSheetBitmap:Bitmap, c:Boolean, width:Number = 16, height:Number = 16, id:int=0) 
 		{   
-			tileSheetBitmapData = tileSheetBitmap.bitmapData.clone();
+			tileSheetBitmapData = tileSheetBitmap.bitmapData;
 			tileWidth = width;
 			tileHeight = height;
 			
@@ -78,12 +78,10 @@ package com.luislarghi.myfirtsengine
 		public function remove(e:Event):void
 		{
 			removeChildren();
-			tileSheetBitmapData.dispose();
+			//tileSheetBitmapData.dispose();
 			canvasBitmapData.dispose();
 			canvasBitmapData = null;
 			tileSheetBitmapData = null;
-			
-			//trace("Bitmap got removed!");
 		}
 		
 		public function GetRowLength():int { return rowLength; }

@@ -27,7 +27,7 @@ package com.luislarghi.myfirtsengine
 		
 		public static function PlaySound(sound:Sound):void
 		{
-			soundChannel = sound.play();
+			soundChannel = sound.play(0, 1);
 		}
 		
 		public static function StopSound():void

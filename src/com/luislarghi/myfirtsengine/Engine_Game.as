@@ -4,6 +4,8 @@ package com.luislarghi.myfirtsengine
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.display.Stage;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -15,9 +17,11 @@ package com.luislarghi.myfirtsengine
 		protected var stateID:int = Engine_States.STATE_NULL;
 		protected var nextState:int = Engine_States.STATE_NULL;
 		protected var currentState:Engine_GameState = null;
+		protected var screenBounds:Rectangle;
 		
 		public static var orgGameRes:Point;
-		public static var newScale:Number = 1;
+		public static var newScaleX:Number = 1;
+		public static var newScaleY:Number = 1;
 		
 		protected const LOW_FRAME_RATE:int = 10;
 		protected var orgFrameRate:int;
@@ -26,10 +30,13 @@ package com.luislarghi.myfirtsengine
 		{ 
 			mainStage = s;
 			
+			orgFrameRate = mainStage.frameRate;
+			
+			mainStage.scaleMode = StageScaleMode.NO_SCALE;
+			mainStage.align = StageAlign.TOP_LEFT;
+			
 			mainStage.addEventListener(Event.ENTER_FRAME, Update);
 			mainStage.addEventListener(Event.RESIZE, AdjustScreenRes);
-			
-			//AdjustScreenRes(null);
 		}
 		
 		protected function Update(e:Event):void
@@ -39,8 +46,7 @@ package com.luislarghi.myfirtsengine
 			// If the state is not a non-exit one
 			if(stateID != Engine_States.STATE_EXITAPP && currentState)
 			{
-				currentState.Logic();			
-				
+				currentState.Logic();
 				currentState.Render();
 			}
 				// else quit the application
@@ -62,18 +68,18 @@ package com.luislarghi.myfirtsengine
 		
 		private function AdjustScreenRes(e:Event):void
 		{
+			mainStage.removeEventListener(Event.RESIZE, AdjustScreenRes);
+			
 			var deviceSize:Point = new Point(
-				Math.max(mainStage.fullScreenWidth, mainStage.fullScreenHeight),
-				Math.min(mainStage.fullScreenWidth, mainStage.fullScreenHeight)
+				Math.max(mainStage.fullScreenWidth, screenBounds.width),
+				Math.min(mainStage.fullScreenHeight, (screenBounds.height + screenBounds.y))
 			);
 			
-			var newScaleX:Number = deviceSize.x / orgGameRes.x;
-			var newScaleY:Number = deviceSize.y / orgGameRes.y;
-			newScale = Math.min(newScaleX, newScaleY, 1);
+			newScaleX = deviceSize.x / orgGameRes.x;
+			newScaleY = deviceSize.y / orgGameRes.y;
 			
-			trace("Device resolution: "+deviceSize);
-			trace("Game resolution: "+orgGameRes);
-			trace("New scale = "+newScale);
+			trace("Device res: "+screenBounds+" | New device res: "+deviceSize+" | Stage res: "+"("+mainStage.fullScreenWidth+", "+mainStage.fullScreenHeight+")");
+			trace("Game resolution: "+orgGameRes+" | New scale: ("+newScaleX+", "+newScaleY+")");
 		}
 	}
 }
